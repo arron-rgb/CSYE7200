@@ -141,7 +141,10 @@ class MappedListSpec extends AnyFlatSpec with Matchers {
     EmptyList.zip(MyLazyList.continually(1)) shouldBe EmptyList
   }
   it should "zip together two non-empty streams" in {
-    val x = MyLazyList.from(1).zip(MyLazyList.from(2))
+    val value1 = MyLazyList.from(1)
+    val value2 = MyLazyList.from(2)
+    val x = value1.zip(value2)
+    println(x)
     x.head shouldBe(1, 2)
     x.tail.head shouldBe(2, 3)
   }

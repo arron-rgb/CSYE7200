@@ -39,7 +39,8 @@ object wordCount extends App {
         .trim
         .toLowerCase)
   }
-
+  var path = "/Users/arronshentu/Project/22Spring/csye7200/report/resources/movie_metadata.csv"
+  var map = spark.read.textFile(path).flatMap(line => line.split(" ")).map(word => (word,1)).groupByKey()
   println(s"Result of word count with $countMethod:")
   countMethod match {
     case "aggregateByKey" => WordCount_aggregateByKey.wordCount(trimer(spark.read.textFile(path).rdd), " ").take(20) foreach println
