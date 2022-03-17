@@ -4,13 +4,13 @@ version := "1.0"
 
 scalaVersion := "2.12.12"
 
-scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-deprecation", "-Ywarn-dead-code", "-Ywarn-value-discard", "-Ywarn-unused" )
+scalacOptions in(Compile, doc) ++= Seq("-groups", "-implicits", "-deprecation", "-Ywarn-dead-code", "-Ywarn-value-discard", "-Ywarn-unused")
 
 unmanagedBase := baseDirectory.value / "spark-csv/lib"
 
 parallelExecution in Test := false
 
-val sparkVersion = "3.1.1"
+val sparkVersion = "3.2.1"
 
 libraryDependencies ++= Seq(
   "com.phasmidsoftware" %% "tableparser" % "1.0.14",
