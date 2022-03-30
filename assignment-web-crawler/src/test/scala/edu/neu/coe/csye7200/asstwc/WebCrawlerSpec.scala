@@ -18,6 +18,7 @@ class WebCrawlerSpec extends AnyFlatSpec with should.Matchers with Futures with 
 
   val goodURL = "http://www1.coe.neu.edu/~rhillyard/indexSafe.html"
   val badURL = "http://www1.coe.neu.edu/junk"
+  val localURL = "/Users/arronshentu/Project/22Spring/csye7200/indexSafe.html"
 
   "getURLContent" should s"succeed for $goodURL" taggedAs Slow in {
     val wf = WebCrawler.getURLContent(new URL(goodURL))
@@ -73,7 +74,8 @@ class WebCrawlerSpec extends AnyFlatSpec with should.Matchers with Futures with 
   }
 
   "crawler(Seq[URL])" should s"succeed for $goodURL, depth 2" taggedAs Slow in {
-    val args = List(s"$goodURL")
+
+    val args = List(s"$localURL")
     val uys = for (arg <- args) yield Try(new URL(arg))
     val usft = for {us <- MonadOps.sequenceForgiving(uys)} yield WebCrawler.crawler(2, us)
     val usf = MonadOps.flatten(usft)
